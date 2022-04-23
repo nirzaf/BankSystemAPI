@@ -1,0 +1,73 @@
+[
+  {
+    "outputFileName": "wwwroot/bundle/vendor.min.css",
+    "inputFiles": [
+      "wwwroot/source/vendor/css/bootstrap.css",
+      "wwwroot/source/vendor/css/datatables.css"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/bundle/vendor.min.js",
+    "inputFiles": [
+      "wwwroot/source/vendor/js/jquery.js",
+      "wwwroot/source/vendor/js/bootstrap.js",
+      "wwwroot/source/vendor/js/moment.js",
+      "wwwroot/source/vendor/js/jquery.validate.js",
+      "wwwroot/source/vendor/js/jquery.validate.unobtrusive.js",
+      "wwwroot/source/vendor/js/datatables.js"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/bundle/main.min.css",
+    "inputFiles": [
+      "wwwroot/source/main/css/site.css"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/bundle/main.min.js",
+    "inputFiles": [
+      "wwwroot/source/main/js/moment-helper.js",
+      "wwwroot/source/main/js/auto-dropdown.js",
+      "wwwroot/source/main/js/auto-datatable.js"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/bundle/qrcode.min.js",
+    "inputFiles": [
+      "wwwroot/source/qrcode/js/qrcode.js"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/bundle/payments.min.js",
+    "inputFiles": [
+      "wwwroot/source/payments/js/payments.js"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/bundle/home-guest.min.css",
+    "inputFiles": [
+      "wwwroot/source/home-guest/css/home-guest.css"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  }
+]

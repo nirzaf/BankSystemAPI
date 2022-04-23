@@ -1,0 +1,43 @@
+﻿@model AllBankAccountsListViewModel
+@{
+    ViewData["Title"] = "All accounts";
+}
+
+<div class="container">
+    @if (!Model.BankAccounts.Any())
+    {
+        <h3>No bank accounts have been created</h3>
+    }
+    else
+    {
+        <h3>All bank accounts</h3>
+        <table class="table table-hover table-bordered auto-datatable">
+            <thead>
+            <tr>
+                <th data-priority="1">Account number</th>
+                <th data-priority="5">Balance</th>
+                <th data-priority="3">Owner</th>
+                <th data-priority="2">Owner's email</th>
+                <th data-priority="4">Date of creation</th>
+                <th data-priority="6">Display name</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var account in Model.BankAccounts)
+            {
+                <tr>
+                    <td>@account.UniqueId</td>
+                    <td><span class="text-green">€@account.Balance</span></td>
+                    <td>@account.UserFullName</td>
+                    <td>@account.UserUserName</td>
+                    <td class="auto-format-date">@account.CreatedOn.ToString("O")</td>
+                    <td>@account.Name</td>
+
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <partial name="_PaginationPartial" model="@Model.BankAccounts" />
+    }
+</div>

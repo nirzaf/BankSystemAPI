@@ -1,0 +1,128 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.loader {
+    border: 0.5em solid transparent;
+    border-radius: 50%;
+    border-top: 0.5em solid #007bff;
+    border-bottom: 0.5em solid #007bff;
+    width: 5em;
+    height: 5em;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.bg-white-translucent {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+@media (min-width: 768px) {
+    .w-md-75 {
+        width: 75% !important;
+    }
+
+    .w-md-50 {
+        width: 50% !important;
+    }
+
+    .w-md-25 {
+        width: 25% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .w-lg-75 {
+        width: 75% !important;
+    }
+
+    .w-lg-50 {
+        width: 50% !important;
+    }
+
+    .w-lg-25 {
+        width: 25% !important;
+    }
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-green {
+    color: green;
+}
+
+.text-red {
+    color: red;
+}
+
+.background-grey {
+    background: #eee;
+}
+
+.background-red {
+    background: #FF435A;
+}
+
+.background-blue {
+    background: #01e2f2;
+}
+
+.background-green {
+    background: greenyellow;
+}
+
+.fa-16x {
+    font-size: 16em;
+}
+
+.floating-card {
+    transition-duration: 300ms;
+}
+
+.floating-card:hover {
+    -webkit-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75) !important;
+    -moz-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75) !important;
+    box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75) !important;
+    -moz-transform: translate(0, -5px);
+    -ms-transform: translate(0, -5px);
+    -o-transform: translate(0, -5px);
+    -webkit-transform: translate(0, -5px);
+    transform: translate(0, -5px);
+}
+
+.error-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 80vh;
+}
+
+.error-box .error-heading {
+    color: dimgray;
+    font-size: 5em;
+}
+
+.hover-visible {
+    opacity: 0;
+    transition: all 150ms;
+}
+
+.hover-parent:hover .hover-visible {
+    opacity: 1;
+}
+
+.text-primary-hover:hover {
+    color: #0069d9 !important;
+}
+
+.word-break-all {
+    word-break: break-all;
+}

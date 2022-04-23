@@ -1,0 +1,32 @@
+﻿@page
+@{
+    ViewData["Title"] = "Payment types";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mx-lg-5">
+    <div class="col-12 col-md-6 p-1">
+        <div class="card floating-card shadow m-2 background-green h-100">
+            <i class="fas fa-university fa-16x text-center my-4"></i>
+            <div class="card-body">
+                <h5 class="card-title">Internal transfer</h5>
+                <p class="card-text">Money transfer between two accounts in this bank (including your own accounts)</p>
+            </div>
+            <div class="card-footer">
+                <a asp-area="MoneyTransfers" asp-controller="Internal" asp-action="Create" class="btn btn-primary align-bottom stretched-link">Create new payment</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 p-1">
+        <div class="card floating-card shadow m-2 background-blue h-100">
+            <i class="fas fa-globe-europe fa-16x text-center my-4"></i>
+            <div class="card-body">
+                <h5 class="card-title">Worldwide transfer</h5>
+                <p class="card-text">Money transfer to another bank</p>
+            </div>
+            <div class="card-footer">
+                <a asp-area="MoneyTransfers" asp-controller="Global" asp-action="Create" class="btn btn-primary align-bottom stretched-link">Create new payment</a>
+            </div>
+        </div>
+    </div>
+</div>

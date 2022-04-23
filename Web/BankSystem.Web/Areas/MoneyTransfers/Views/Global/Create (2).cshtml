@@ -1,0 +1,330 @@
+﻿@model GlobalMoneyTransferCreateBindingModel
+@{
+    ViewData["Title"] = "Create global money transfer";
+}
+
+
+<div id="loader" class="fixed-top bg-white-translucent justify-content-center align-items-center flex-column w-100 h-100" style="display: none;">
+    <div class="loader"></div>
+    <h2>Processing</h2>
+</div>
+
+<div class="container">
+    <h3 class="mb-3">Money transfer to another bank</h3>
+
+    <h5 class="mt-3">Payer</h5>
+    <form id="transferForm" method="post" onsubmit="showLoading()">
+        <div class="background-grey container pt-1">
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label asp-for="AccountId"></label>
+                </div>
+                <div class="col-sm-10">
+                    <select class="custom-select form-control" asp-for="AccountId">
+                        @foreach (var account in Model.OwnAccounts)
+                        {
+                            <option value="@account.Id">@account.Name - €@account.Balance.ToString("F2")</option>
+                        }
+                    </select>
+                    <span asp-validation-for="AccountId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label asp-for="SenderName"></label>
+                </div>
+                <div class="col-sm-6">
+                    <input class="form-control" disabled asp-for="SenderName" value="@Model.SenderName" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label asp-for="Amount"></label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group mb-2">
+                        <input class="form-control mr-1" asp-for="Amount" />
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">EUR</div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <h5 class="mt-3">Beneficiary's bank</h5>
+        <div class="background-grey container pb-1 pt-1">
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label asp-for="@Model.DestinationBank.SwiftCode"></label>
+                </div>
+                <div class="col-sm-6">
+                    <input asp-for="@Model.DestinationBank.SwiftCode" class="form-control" />
+                    <span asp-validation-for="@Model.DestinationBank.SwiftCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label asp-for="@Model.DestinationBank.Name"></label>
+                </div>
+                <div class="col-sm-6">
+                    <input asp-for="@Model.DestinationBank.Name" class="form-control" />
+                    <span asp-validation-for="@Model.DestinationBank.Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label asp-for="@Model.DestinationBank.Country"></label>
+                </div>
+                <div class="col-sm-8">
+                    <select asp-for="@Model.DestinationBank.Country" class="custom-select form-control">
+                        <option>Afghanistan</option>
+                        <option>Albania</option>
+                        <option>Algeria</option>
+                        <option>Andorra</option>
+                        <option>Angola</option>
+                        <option>Antigua and Barbuda</option>
+                        <option>Argentina</option>
+                        <option>Armenia</option>
+                        <option>Australia</option>
+                        <option>Austria</option>
+                        <option>Azerbaijan</option>
+                        <option>Bahamas</option>
+                        <option>Bahrain</option>
+                        <option>Bangladesh</option>
+                        <option>Barbados</option>
+                        <option>Belarus</option>
+                        <option>Belgium</option>
+                        <option>Belize</option>
+                        <option>Benin</option>
+                        <option>Bhutan</option>
+                        <option>Bolivia</option>
+                        <option>Bosnia and Herzegovina</option>
+                        <option>Botswana</option>
+                        <option>Brazil</option>
+                        <option>Brunei</option>
+                        <option>Bulgaria</option>
+                        <option>Burkina Faso</option>
+                        <option>Burundi</option>
+                        <option>Cabo Verde</option>
+                        <option>Cambodia</option>
+                        <option>Cameroon</option>
+                        <option>Canada</option>
+                        <option>Central African Republic</option>
+                        <option>Chad</option>
+                        <option>Chile</option>
+                        <option>China</option>
+                        <option>Colombia</option>
+                        <option>Comoros</option>
+                        <option>Congo, Democratic Republic of the</option>
+                        <option>Congo, Republic of the</option>
+                        <option>Costa Rica</option>
+                        <option>Cote d'Ivoire</option>
+                        <option>Croatia</option>
+                        <option>Cuba</option>
+                        <option>Cyprus</option>
+                        <option>Czechia</option>
+                        <option>Denmark</option>
+                        <option>Djibouti</option>
+                        <option>Dominica</option>
+                        <option>Dominican Republic</option>
+                        <option>Ecuador</option>
+                        <option>Egypt</option>
+                        <option>El Salvador</option>
+                        <option>Equatorial Guinea</option>
+                        <option>Eritrea</option>
+                        <option>Estonia</option>
+                        <option>Ethiopia</option>
+                        <option>Fiji</option>
+                        <option>Finland</option>
+                        <option>France</option>
+                        <option>Gabon</option>
+                        <option>Gambia</option>
+                        <option>Georgia</option>
+                        <option>Germany</option>
+                        <option>Ghana</option>
+                        <option>Greece</option>
+                        <option>Grenada</option>
+                        <option>Guatemala</option>
+                        <option>Guinea</option>
+                        <option>Guinea-Bissau</option>
+                        <option>Guyana</option>
+                        <option>Haiti</option>
+                        <option>Honduras</option>
+                        <option>Hungary</option>
+                        <option>Iceland</option>
+                        <option>India</option>
+                        <option>Indonesia</option>
+                        <option>Iran</option>
+                        <option>Iraq</option>
+                        <option>Ireland</option>
+                        <option>Israel</option>
+                        <option>Italy</option>
+                        <option>Jamaica</option>
+                        <option>Japan</option>
+                        <option>Jordan</option>
+                        <option>Kazakhstan</option>
+                        <option>Kenya</option>
+                        <option>Kiribati</option>
+                        <option>Kosovo</option>
+                        <option>Kuwait</option>
+                        <option>Kyrgyzstan</option>
+                        <option>Laos</option>
+                        <option>Latvia</option>
+                        <option>Lebanon</option>
+                        <option>Lesotho</option>
+                        <option>Liberia</option>
+                        <option>Libya</option>
+                        <option>Liechtenstein</option>
+                        <option>Lithuania</option>
+                        <option>Luxembourg</option>
+                        <option>Madagascar</option>
+                        <option>Malawi</option>
+                        <option>Malaysia</option>
+                        <option>Maldives</option>
+                        <option>Mali</option>
+                        <option>Malta</option>
+                        <option>Marshall Islands</option>
+                        <option>Mauritania</option>
+                        <option>Mauritius</option>
+                        <option>Mexico</option>
+                        <option>Micronesia</option>
+                        <option>Moldova</option>
+                        <option>Monaco</option>
+                        <option>Mongolia</option>
+                        <option>Montenegro</option>
+                        <option>Morocco</option>
+                        <option>Mozambique</option>
+                        <option>Myanmar</option>
+                        <option>Namibia</option>
+                        <option>Nauru</option>
+                        <option>Nepal</option>
+                        <option>Netherlands</option>
+                        <option>New Zealand</option>
+                        <option>Nicaragua</option>
+                        <option>Niger</option>
+                        <option>Nigeria</option>
+                        <option>North Korea</option>
+                        <option>North Macedonia</option>
+                        <option>Norway</option>
+                        <option>Oman</option>
+                        <option>Pakistan</option>
+                        <option>Palau</option>
+                        <option>Palestine</option>
+                        <option>Panama</option>
+                        <option>Papua New Guinea</option>
+                        <option>Paraguay</option>
+                        <option>Peru</option>
+                        <option>Philippines</option>
+                        <option>Poland</option>
+                        <option>Portugal</option>
+                        <option>Qatar</option>
+                        <option>Romania</option>
+                        <option>Russia</option>
+                        <option>Rwanda</option>
+                        <option>Saint Kitts and Nevis</option>
+                        <option>Saint Lucia</option>
+                        <option>Saint Vincent and the Grenadines</option>
+                        <option>Samoa</option>
+                        <option>San Marino</option>
+                        <option>Sao Tome and Principe</option>
+                        <option>Saudi Arabia</option>
+                        <option>Senegal</option>
+                        <option>Serbia</option>
+                        <option>Seychelles</option>
+                        <option>Sierra Leone</option>
+                        <option>Singapore</option>
+                        <option>Slovakia</option>
+                        <option>Slovenia</option>
+                        <option>Solomon Islands</option>
+                        <option>Somalia</option>
+                        <option>South Africa</option>
+                        <option>South Korea</option>
+                        <option>South Sudan</option>
+                        <option>Spain</option>
+                        <option>Sri Lanka</option>
+                        <option>Sudan</option>
+                        <option>Suriname</option>
+                        <option>Sweden</option>
+                        <option>Switzerland</option>
+                        <option>Syria</option>
+                        <option>Taiwan</option>
+                        <option>Tajikistan</option>
+                        <option>Tanzania</option>
+                        <option>Thailand</option>
+                        <option>Timor-Leste</option>
+                        <option>Togo</option>
+                        <option>Tonga</option>
+                        <option>Trinidad and Tobago</option>
+                        <option>Tunisia</option>
+                        <option>Turkey</option>
+                        <option>Turkmenistan</option>
+                        <option>Tuvalu</option>
+                        <option>Uganda</option>
+                        <option>Ukraine</option>
+                        <option>United Arab Emirates</option>
+                        <option>United Kingdom</option>
+                        <option>United States of America</option>
+                        <option>Uruguay</option>
+                        <option>Uzbekistan</option>
+                        <option>Vanuatu</option>
+                        <option>Vatican City</option>
+                        <option>Venezuela</option>
+                        <option>Vietnam</option>
+                        <option>Yemen</option>
+                        <option>Zambia</option>
+                        <option>Zimbabwe</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <h5 class="mt-3">Beneficiary</h5>
+        <div class="background-grey container pb-1 pt-1">
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label asp-for="@Model.DestinationBank.Account.UserFullName"></label>
+                </div>
+                <div class="col-sm-6">
+                    <input class="form-control" asp-for="@Model.DestinationBank.Account.UserFullName" />
+                    <span asp-validation-for="@Model.DestinationBank.Account.UserFullName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label asp-for="@Model.DestinationBank.Account.UniqueId"></label>
+                </div>
+                <div class="col-sm-6">
+                    <input class="form-control" asp-for="@Model.DestinationBank.Account.UniqueId" />
+                    <span asp-validation-for="@Model.DestinationBank.Account.UniqueId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group mt-3 row">
+            <div class="col-sm-2">
+                <label asp-for="Description"></label>
+                <span class="font-italic text-muted">(optional)</span>
+            </div>
+            <div class="col-sm-8">
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group text-right">
+            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-secondary">Cancel</a>
+            <button class="btn btn-primary" type="submit">Pay</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script>
+        function showLoading() {
+            const form = $("#transferForm");
+            form.validate();
+
+            if (form.valid()) {
+                $('#loader').css('display', 'flex');
+            }
+        };
+    </script>
+}

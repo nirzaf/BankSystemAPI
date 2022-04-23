@@ -1,0 +1,22 @@
+@model CardCreateViewModel
+
+@{
+    ViewData["Title"] = "Create card";
+}
+
+<div class="mx-auto my-4 text-center w-lg-50 w-md-75">
+    <h2>@ViewData["Title"]</h2>
+    <form method="post">
+        <hr class="w-75" />
+        <div class="form-group">
+            <label asp-for="AccountId">
+            </label>
+            <select class="custom-select" asp-for="AccountId" asp-items="Model.BankAccounts"></select>
+            <span asp-validation-for="AccountId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <a asp-action="Create" asp-controller="Cards" class="btn btn-outline-secondary">Cancel</a>
+            <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+    </form>
+</div>

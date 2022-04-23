@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\BankSystem\BankSystem.Data\BankSystem.Data.csproj" />
+    <ProjectReference Include="..\BankSystem.Services.Models\BankSystem.Services.Models.csproj" />
+  </ItemGroup>
+
+</Project>
